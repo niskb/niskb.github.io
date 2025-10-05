@@ -4,6 +4,11 @@ body {
     color: #1f2937;
     margin: 0;
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+    background-color: #1f2937;
+    color: #f3f4f6;
 }
 header {
     background-color: #2563eb;
@@ -25,6 +30,12 @@ header a {
 }
 header a:hover {
     color: #bfdbfe;
+}
+body.dark-mode header a {
+    color: #bfdbfe;
+}
+body.dark-mode header a:hover {
+    color: #93c5fd;
 }
 .profile-img {
     width: 128px;
@@ -54,6 +65,32 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #1e40af;
 }
+body.dark-mode nav ul li a {
+    color: #bfdbfe;
+}
+body.dark-mode nav ul li a:hover {
+    background-color: #1e3a8a;
+}
+.toggle-btn {
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.toggle-btn:hover {
+    background-color: #1e3a8a;
+}
+body.dark-mode .toggle-btn {
+    background-color: #93c5fd;
+    color: #1f2937;
+}
+body.dark-mode .toggle-btn:hover {
+    background-color: #60a5fa;
+}
 main {
     max-width: 896px;
     margin: 0 auto;
@@ -67,6 +104,9 @@ h2 {
     font-weight: 600;
     border-bottom: 2px solid #2563eb;
     padding-bottom: 0.5rem;
+}
+body.dark-mode h2 {
+    border-bottom-color: #60a5fa;
 }
 h3 {
     font-size: 1.25rem;
@@ -85,11 +125,20 @@ a {
 a:hover {
     text-decoration: none;
 }
+body.dark-mode a {
+    color: #60a5fa;
+}
+body.dark-mode a:hover {
+    color: #93c5fd;
+}
 footer {
     background-color: #2563eb;
     color: white;
     text-align: center;
     padding: 1rem;
+}
+body.dark-mode footer {
+    background-color: #1e3a8a;
 }
 @media (max-width: 640px) {
     header h1 {
