@@ -26,6 +26,34 @@ header a {
 header a:hover {
     color: #bfdbfe;
 }
+.profile-img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: block;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+nav ul li a:hover {
+    background-color: #1e40af;
+}
 main {
     max-width: 896px;
     margin: 0 auto;
@@ -69,5 +97,17 @@ footer {
     }
     main {
         padding: 1rem;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    nav ul li a {
+        display: block;
+        padding: 0.5rem;
+    }
+    .profile-img {
+        width: 100px;
+        height: 100px;
     }
 }
