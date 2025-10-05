@@ -1,0 +1,155 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Niski - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Brian Niski</h1>
+        <p>Computer Science Student | Full-Stack Developer</p>
+        <p>
+            <a href="mailto:niskibrian@hotmail.com">niskibrian@hotmail.com</a> | 
+            +1 (631) 836-4673 | 
+            <a href="https://github.com/niskb">GitHub</a> | 
+            <a href="https://www.linkedin.com/in/niski">LinkedIn</a>
+        </p>
+        <p><a href="resume.pdf">Download Resume</a></p>
+    </header>
+
+    <main>
+        <section id="education">
+            <h2>Education</h2>
+            <div>
+                <p><strong>Bachelor of Science in Computer Science</strong></p>
+                <p>Farmingdale State College, Farmingdale, NY</p>
+                <p>Graduation: May 2025</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Languages:</strong> Java, TypeScript, JavaScript, SQL</li>
+                <li><strong>Frameworks/Libraries:</strong> JavaFX, React, Node.js, Spring Boot, Next.js, Vite, Chakra UI, Tailwind CSS</li>
+                <li><strong>Databases & Tools:</strong> MongoDB, SQLite, Firebase, AWS S3, OpenAI API</li>
+                <li><strong>Software:</strong> Microsoft Office (Word, PowerPoint, Excel)</li>
+                <li><strong>Concepts:</strong> Algorithms, Data Structures, Full-Stack Development, AI Integration, RESTful APIs</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div>
+                <h3>LawDoc AI</h3>
+                <p>TypeScript, Next.js, React, Tailwind CSS, OpenAI API | <a href="https://github.com/abdkhan-git/lawdoc-ai">GitHub</a></p>
+                <ul>
+                    <li>Developed an AI-powered tool to simplify legal document analysis, enabling users to summarize and query complex PDFs in plain language.</li>
+                    <li>Designed and implemented a React-based frontend with Tailwind CSS, improving user interaction efficiency by 30% through intuitive interfaces.</li>
+                    <li>Integrated OpenAI API to process and extract key information from legal documents, reducing manual review time by 40%.</li>
+                    <li>Collaborated in a team to secure 1st place at RamHacks 2025 by delivering a scalable TypeScript backend with Next.js.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>MABBR</h3>
+                <p>TypeScript, Next.js, MongoDB, Tailwind CSS, AWS S3 | <a href="https://github.com/AmaurysM/mabbr-senior-project">GitHub</a></p>
+                <ul>
+                    <li>Developed a simulated stock trading platform with community features, leaderboards, profiles, and interactive games as a team-based senior project.</li>
+                    <li>Built a responsive frontend with Tailwind CSS, reducing page load times by 20% across mobile and desktop devices.</li>
+                    <li>Implemented AWS S3 for secure storage of user profile data and game assets, enabling efficient data retrieval.</li>
+                    <li>Developed real-time leaderboards using WebSocket, increasing user engagement by 15% through dynamic updates.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ghost Kitchen</h3>
+                <p>Java, JavaScript, React, Node.js, Spring Boot | <a href="https://github.com/niskb/Ghost-Kitchen">GitHub</a></p>
+                <ul>
+                    <li>Engineered a web platform for virtual restaurant backend operations as my final project for Advanced Object-Oriented Programming.</li>
+                    <li>Developed a Spring Boot backend with RESTful APIs, processing 100+ orders daily with 99% uptime during testing.</li>
+                    <li>Designed a React-based frontend, enhancing user experience with dynamic order tracking and intuitive navigation.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>SustainableShare</h3>
+                <p>TypeScript, Vite, MongoDB, Chakra UI | <a href="https://github.com/ChenZhu50/Hackthon_Storage_room_management">GitHub</a></p>
+                <ul>
+                    <li>Built a storage room management system to streamline inventory tracking and optimize space allocation for small businesses.</li>
+                    <li>Engineered a Vite-based web application with Chakra UI, enhancing data retrieval speed by 25% with server-side rendering.</li>
+                    <li>Developed MongoDB schemas enabling real-time updates and reducing data entry errors by 15%.</li>
+                    <li>Contributed to project development during HopperHacks 2025, delivering a functional prototype under tight deadlines.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>CarMart</h3>
+                <p>Java, JavaFX, Firebase | <a href="https://github.com/NickEckstein/CSC325CarProject">GitHub</a></p>
+                <ul>
+                    <li>Developed an e-commerce platform for buying and selling cars online as a team project for Software Engineering.</li>
+                    <li>Built a JavaFX-based GUI, enabling 50+ users to browse and interact with car listings intuitively.</li>
+                    <li>Integrated Firebase for real-time database management, ensuring 95% data consistency for listings and transactions.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="honors">
+            <h2>Honors & Awards</h2>
+            <ul>
+                <li>Epsilon Pi Tau Honor Society - Inducted: March 2025</li>
+                <li>Phi Theta Kappa Honor Society - Inducted: November 2019</li>
+                <li>Delta Epsilon Phi Honor Society - Inducted: November 2017</li>
+                <li>Beverly Broomell Memorial Scholarship - Awarded: May 2020</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Feel free to reach out via <a href="mailto:niskibrian@hotmail.com">email</a> or <a href="https://www.linkedin.com/in/niski">LinkedIn</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Brian Niski</p>
+        <script src="index.js"></script>
+    </footer>
+</body>
+</html>
