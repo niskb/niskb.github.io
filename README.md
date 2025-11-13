@@ -3,7 +3,7 @@ My personal portfolio website showcasing my projects and skills.
 
 # Brian Niski's Portfolio
 
-Welcome to my personal portfolio website! This site showcases my projects, technical skills, and achievements as a Computer Science student at Farmingdale State College.
+Welcome to my personal portfolio website! This site showcases my projects, technical skills, and achievements in Computer Science.
 
 ## About
 I'm a full-stack developer with experience in Java, TypeScript, React, Next.js, and more. Explore my projects to see my work in action!
