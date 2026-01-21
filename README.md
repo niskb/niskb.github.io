@@ -1,4 +1,4 @@
-# niskb.github.io
+# brianniski.github.io
 My personal portfolio website showcasing my projects and skills.
 
 # Brian Niski's Portfolio
