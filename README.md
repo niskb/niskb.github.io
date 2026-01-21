@@ -1,4 +1,4 @@
-# niskb.github.io
+# brianniski.github.io
 My personal portfolio website showcasing my projects and skills.
 
 # Brian Niski's Portfolio
@@ -9,8 +9,8 @@ Welcome to my personal portfolio website! This site showcases my projects, techn
 I'm a full-stack developer with experience in Java, TypeScript, React, Next.js, and more. Explore my projects to see my work in action!
 
 ## Links
-- [Portfolio Website](https://niskb.github.io)
-- [GitHub](https://github.com/niskb)
+- [Portfolio Website](https://brianniski.github.io)
+- [GitHub](https://github.com/brianniski)
 - [LinkedIn](https://www.linkedin.com/in/niski)
 - Email: niskibrian@hotmail.com
 
